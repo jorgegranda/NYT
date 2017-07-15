@@ -26,6 +26,7 @@
       renderQuery.author = response.response.docs[0].byline.original;
       renderQuery.link = response.response.docs[0].web_url;
 
+      $("#headline").text(renderQuery.headline);
       $("#author").text(renderQuery.author);
       $("#snippet").text(renderQuery.snippet);
       $("#date").text(renderQuery.date);
