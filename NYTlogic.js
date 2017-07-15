@@ -11,7 +11,7 @@
   function queryNYT()
   {
     var query = $("#search").val();
-    var pageNo = $("#sell").val();
+    var pageNo = $("#sel1").val();
     var begin = $("#startYear").val();
     var end = $("#endYear").val();
     var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
@@ -32,10 +32,11 @@
       $("#snippet").text(renderQuery.snippet);
       $("#date").text(renderQuery.date);
       $("#link").text(renderQuery.link);
+      $("#prettybox").text('1');
 
-      if (response.response.docs.length > 1)
+      if (pageNo > 1)
       {
-        for (i = 0; i < response.response.docs.length; i++)
+        for (i = 0; i < pageNo - 1; i++)
         {
           var cloneDiv = $("<div>").attr('id', "#well" + i);
           var cloneAuthor = $("<h4>").attr('id', "#author" + i);
@@ -43,7 +44,12 @@
           var cloneDate = $("<h4>").attr('id', "#date" + i);
           var cloneLink = $("<a>").attr('id', "#link" + i);
           var cloneHeadline = $('<h3>').attr('id', "#headline" + i);
-          var p = i + 1;
+          var cloneBox = $("<i>").attr(
+          {
+            class: "fa fa-square fa-2x",
+            id: "prettyBox" + i,
+          }).css('aria-hidden', 'true');
+          var p = i + 2;
 
           renderQuery.headline = response.response.docs[i].headline.main;
           console.log(renderQuery.headline);
@@ -56,8 +62,8 @@
           renderQuery.link = response.response.docs[i].web_url;
           console.log(renderQuery.link);
 
-           $('#grid-search').append('<p align = "center" class="square">'+p+'</p>');
            cloneDiv.prependTo(".panel-body");
+           cloneBox.text(p).appendTo(cloneDiv);
            cloneAuthor.text(renderQuery.author).appendTo(cloneDiv);
            cloneHeadline.text(renderQuery.headline).appendTo(cloneDiv);
            cloneDate.text(renderQuery.date).appendTo(cloneDiv);
