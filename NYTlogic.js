@@ -23,7 +23,7 @@
       console.log(response);
       renderQuery.headline = response.response.docs[0].headline.main;
       renderQuery.snippet = response.response.docs[0].snippet;
-      renderQuery.date = response.response.docs[0].pubdate;
+      renderQuery.date = response.response.docs[0].pub_date;
       renderQuery.author = response.response.docs[0].byline.original;
       renderQuery.link = response.response.docs[0].web_url;
 
@@ -62,13 +62,14 @@
           renderQuery.link = response.response.docs[i].web_url;
           console.log(renderQuery.link);
 
-           cloneDiv.prependTo(".panel-body");
+           $("<div>").attr('class', 'panel-body').prependTo(".panel");
+           cloneDiv.appendTo(".panel-body");
            cloneBox.text(p).appendTo(cloneDiv);
            cloneAuthor.text(renderQuery.author).appendTo(cloneDiv);
            cloneHeadline.text(renderQuery.headline).appendTo(cloneDiv);
-           cloneDate.text(renderQuery.date).appendTo(cloneDiv);
            cloneSection.text(renderQuery.snippet).appendTo(cloneDiv);
-           cloneLink.text(renderQuery.link).appendTo(cloneDiv);
+           cloneDate.text(renderQuery.date).appendTo(cloneDiv);
+           cloneLink.attr('href', renderQuery.link).text(renderQuery.link).appendTo(cloneDiv);
       }
     }
 
