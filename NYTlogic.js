@@ -62,8 +62,7 @@
           renderQuery.link = response.response.docs[i].web_url;
           console.log(renderQuery.link);
 
-           $("<div>").attr('class', 'panel-body').prependTo(".panel");
-           cloneDiv.appendTo(".panel-body");
+           cloneDiv.prependTo(".panel-body");
            cloneBox.text(p).appendTo(cloneDiv);
            cloneAuthor.text(renderQuery.author).appendTo(cloneDiv);
            cloneHeadline.text(renderQuery.headline).appendTo(cloneDiv);
