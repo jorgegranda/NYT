@@ -49,12 +49,17 @@
 <script>
 //VARIABLES
 
-var query = $("#search").val();
-var pageNo = $("#sell").val();
-var begin = $("#startYear").val();
-var end = $("#endYear").val();
-var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-var nytApiKey = 'api-key=eafa397532be49299f095815f8165bde';
+var query = "Trump";
+var pageNo = 10;
+var begin = "01011980";
+var end = "07142017";
+var head = "";
+var snip = "";
+var date = "";
+var author = "";
+var link = "";
+var nytApiKey = "eafa397532be49299f095815f8165bde";
+
 
   function queryNYT(){
     var p = 0;

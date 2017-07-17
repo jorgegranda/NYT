@@ -12,44 +12,39 @@
   {
     var query = $("#search").val();
     var pageNo = $("#sel1").val();
+    var pageNumber = pageNo;
     var begin = $("#startYear").val();
+    if (begin != "")
+    {
+      pageNo += '&begin_date=';
+      begin += '0101&end_date=';
+    }
+
     var end = $("#endYear").val();
+    if (end != "")
+      end += '1231';
+
     var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-    url += '?' + 'api-key=eafa397532be49299f095815f8165bde' + '&' + query + '&' + pageNo + '&' + begin + '&' + end;
+    url += '?' + 'api-key=eafa397532be49299f095815f8165bde' + '&q=' + query + '&page=' + pageNo + begin + end;
     $.ajax({
       url: url,
       method: 'GET',
     }).done(function(response) {
       console.log(response);
-      renderQuery.headline = response.response.docs[0].headline.main;
-      renderQuery.snippet = response.response.docs[0].snippet;
-      renderQuery.date = response.response.docs[0].pub_date;
-      renderQuery.author = response.response.docs[0].byline.original;
-      renderQuery.link = response.response.docs[0].web_url;
 
-      $("#headline").text(renderQuery.headline);
-      $("#author").text(renderQuery.author);
-      $("#snippet").text(renderQuery.snippet);
-      $("#date").text(renderQuery.date);
-      $("#link").text(renderQuery.link);
-      $("#prettybox").text('1');
-
-      if (pageNo > 1)
-      {
-        for (i = 0; i < pageNo - 1; i++)
+        for (i = 0; i < pageNumber; i++)
         {
-          var cloneDiv = $("<div>").attr('id', "#well" + i);
+          var cloneDiv = $("<div>").attr({
+            class: 'well',
+            id: "#well" + i});
           var cloneAuthor = $("<h4>").attr('id', "#author" + i);
           var cloneSection = $("<h4>").attr('id', "#snippet" + i);
           var cloneDate = $("<h4>").attr('id', "#date" + i);
           var cloneLink = $("<a>").attr('id', "#link" + i);
           var cloneHeadline = $('<h3>').attr('id', "#headline" + i);
-          var cloneBox = $("<i>").attr(
-          {
-            class: "fa fa-square fa-2x",
-            id: "prettyBox" + i,
-          }).css('aria-hidden', 'true');
-          var p = i + 2;
+          var cloneLabel = $("<label>").attr('class', 'fas-stack fa-lg');
+
+          var p = i + 1;
 
           renderQuery.headline = response.response.docs[i].headline.main;
           console.log(renderQuery.headline);
@@ -57,20 +52,22 @@
           console.log(renderQuery.snippet);
           renderQuery.date = response.response.docs[i].pub_date;
           console.log(renderQuery.date);
-          renderQuery.author = response.response.docs[i].byline.original;
+          if (response.response.docs[i].byline == null)
+            renderQuery.author == 'Unknown Author';
+          else
+            renderQuery.author = response.response.docs[i].byline.original;
           console.log(renderQuery.author);
           renderQuery.link = response.response.docs[i].web_url;
           console.log(renderQuery.link);
 
-           cloneDiv.prependTo(".panel-body");
-           cloneBox.text(p).appendTo(cloneDiv);
+           cloneDiv.appendTo(".output-panel");
+           cloneLabel.text(p).appendTo(cloneDiv);
            cloneAuthor.text(renderQuery.author).appendTo(cloneDiv);
            cloneHeadline.text(renderQuery.headline).appendTo(cloneDiv);
            cloneSection.text(renderQuery.snippet).appendTo(cloneDiv);
            cloneDate.text(renderQuery.date).appendTo(cloneDiv);
            cloneLink.attr('href', renderQuery.link).text(renderQuery.link).appendTo(cloneDiv);
       }
-    }
 
     }).fail(function(err) {
       throw err;
@@ -81,4 +78,8 @@
   {
     event.preventDefault();
      queryNYT()
+  });
+
+  $("#clearBtn").click(function(event){
+    $(".output-panel").empty();
   });

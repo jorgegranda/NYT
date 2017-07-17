@@ -10,35 +10,10 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Local styling -->
+    <link rel="stylesheet" href="style.css">
 
 </head>
-<style>
-    #jTron {
-        text-align: center;
-        background-color: navy;
-        color: white;
-    }
-
-    .jumbotron {
-        background-color: navy;
-    }
-
-    .panel-default>.panel-heading {
-        background-color: #0F0D56;
-        color: white;
-    }
-
-    #searchBtn,
-    #clearBtn {
-        background-color: #c0c0c0;
-        color: white;
-        font-weight: 700;
-    }
-    #link {
-        color: #11BF71;
-    }
-
-</style>
 <body>
 <div class="container">
     <div class="jumbotron">
@@ -94,14 +69,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-table" aria-hidden="true"></i> Search Results</h3>
                 </div>
-                <div class="panel-body">
-                    <div class="well">
-                        <i class="fa fa-square fa-2x" id="prettyBox" aria-hidden="true"></i><em><h2 id="headline">Title</h2></em>
-                        <h3 id="author">Author</h3>
-                        <h4 id="snippet">Section</h4>
-                        <h4 id="date">Date</h4>
-                        <h4 id="link">Link</h4>
-                    </div>
+                <div class="panel-body output-panel">
                 </div>
             </div>
         </div>

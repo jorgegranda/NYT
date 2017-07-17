@@ -1,0 +1,51 @@
+#jTron {
+  text-align: center;
+  background-color: navy;
+  color: white;
+}
+
+.jumbotron {
+  background-color: navy;
+  color: black;
+}
+
+.panel-default>.panel-heading {
+  background-color: #0F0D56;
+  color: white;
+}
+
+.panel-body
+{
+  color: black;
+  background-color: #F5F5F5;
+}
+
+#searchBtn, #clearBtn {
+  background-color: #c0c0c0;
+  color: white;
+  font-weight: 700;
+}
+
+#link {
+  color: #11BF71;
+  background-color: #F5F5F5;
+}
+
+#headline {
+  font-weight: bolder;
+}
+
+.fas-stack
+{
+  background-color: #222222;
+  color: white;
+  padding: 6px;
+  border: lightgray 2px double;
+}
+
+.well
+{
+  margin-bottom: 5px;
+  background-color: #D5D5D5;
+  color: black;
+}
